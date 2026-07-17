@@ -1,0 +1,38 @@
+---
+import Boton from './Boton.astro';
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-charcoal/5 bg-crema/80 backdrop-blur-md"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center gap-3" aria-label="VIBA Consultores">
+      <span
+        class="grid size-10 place-items-center rounded-full border border-salvia/40 font-serif text-lg font-semibold text-salvia"
+      >
+        VB
+      </span>
+      <span class="flex flex-col leading-none">
+        <span class="font-serif text-lg font-semibold text-charcoal">VIBA</span>
+        <span
+          class="mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.25em] text-gris"
+        >
+          Consultores
+        </span>
+      </span>
+    </a>
+
+    <!-- Nav -->
+    <nav
+      class="hidden items-center gap-8 text-sm font-medium text-charcoal/80 md:flex"
+    >
+      <a href="#inicio" class="transition hover:text-terracota">Inicio</a>
+      <a href="#contacto" class="transition hover:text-terracota">Contacto</a>
+    </nav>
+
+    <Boton variante="oscuro" href="#contacto" class="!px-5 !py-2.5">
+      Déjanos tus datos
+    </Boton>
+  </div>
+</header>

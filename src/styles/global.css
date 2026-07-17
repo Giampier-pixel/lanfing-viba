@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   VIBA Consultores — tokens de marca (fuente de verdad: design-viba.md)
+   Paleta oficial + colores de apoyo del moodboard.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Neutros cálidos */
+  --color-crema: #faf6f0;   /* Blanco Seda — fondo base */
+  --color-marfil: #fffdf9;  /* superficie de tarjetas (un punto más claro) */
+  --color-charcoal: #2c3135;
+  --color-charcoal-900: #1f2427;
+  --color-gris: #706e6b;    /* Muted Grey — texto secundario */
+
+  /* Marca */
+  --color-salvia: #799484;
+  --color-salvia-600: #5f7a6b;
+  --color-salvia-700: #4c6456;
+
+  /* Acento */
+  --color-terracota: #b26b52;
+  --color-terracota-600: #9a5842;
+  --color-terracota-700: #83452f;
+
+  /* Apoyo / texturas (del moodboard — aprox., confirmar) */
+  --color-champagne: #e8dcc8;
+  --color-brass: #b08d57;
+  --color-taupe: #b7aba0;
+}
+
+/* Tipografía: mapea las variables que inyecta la Fonts API de Astro */
+@theme inline {
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-figtree);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* Reveal escalonado del hero */
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.revelar {
+  animation: revelar 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .revelar {
+    animation: none;
+  }
+}

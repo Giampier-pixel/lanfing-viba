@@ -1,0 +1,41 @@
+---
+const anio = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal text-crema/80">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <div
+      class="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center"
+    >
+      <div class="flex items-center gap-3">
+        <span
+          class="grid size-11 place-items-center rounded-full border border-crema/25 font-serif text-lg font-semibold text-crema"
+        >
+          VB
+        </span>
+        <div class="flex flex-col leading-none">
+          <span class="font-serif text-xl font-semibold text-crema">
+            VIBA Consultores
+          </span>
+          <span
+            class="mt-1.5 text-[0.65rem] font-medium uppercase tracking-[0.25em] text-crema/50"
+          >
+            Estrategia · Comunicación interna · Endomarketing
+          </span>
+        </div>
+      </div>
+
+      <nav class="flex gap-6 text-sm">
+        <a href="#inicio" class="transition hover:text-terracota">Inicio</a>
+        <a href="#contacto" class="transition hover:text-terracota">Contacto</a>
+      </nav>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col justify-between gap-2 border-t border-crema/10 pt-6 text-xs text-crema/45 sm:flex-row"
+    >
+      <span>© {anio} VIBA Consultores. Todos los derechos reservados.</span>
+      <a href="#" class="transition hover:text-crema/70">Política de privacidad</a>
+    </div>
+  </div>
+</footer>

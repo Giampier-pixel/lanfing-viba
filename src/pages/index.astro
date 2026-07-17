@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+// Hero nuevo (megáfono); el anterior queda de respaldo en './Hero.astro'
+import Hero from '../components/HeroMegafono.astro';
+import Footer from '../components/Footer.astro';
+import BotonWhatsapp from '../components/BotonWhatsapp.astro';
+import Formulario from '../components/Formulario.tsx';
+
+const WSP_TEL = '51999888777'; // TODO: reemplazar por el WhatsApp real de VIBA
+const WSP_MSG =
+  'Hola 👋 Quiero saber más sobre la asesoría en estrategia de VIBA Consultores.';
+
+const beneficios = [
+  'Respuesta el mismo día hábil',
+  'Diagnóstico inicial sin costo',
+  'Asesoría personalizada para tu negocio',
+];
+---
+
+<Layout title="VIBA Consultores — Estrategia que da resultados">
+  <Header />
+
+  <main>
+    <Hero />
+
+    <!-- Contacto / Formulario de captación -->
+    <section id="contacto" class="bg-champagne/20 py-24">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid items-center gap-12 md:grid-cols-2">
+          <!-- Columna de texto -->
+          <div>
+            <h2 class="font-serif text-4xl font-semibold leading-tight text-charcoal">
+              Cuéntanos de tu negocio y te contactamos.
+            </h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-charcoal/70">
+              Déjanos tus datos y un consultor de VIBA se pondrá en contacto
+              contigo para conversar sobre tu estrategia. Sin compromiso.
+            </p>
+
+            <ul class="mt-8 space-y-3">
+              {
+                beneficios.map((b) => (
+                  <li class="flex items-center gap-3 text-sm text-charcoal/80">
+                    <span class="grid size-6 shrink-0 place-items-center rounded-full bg-salvia/15 text-salvia-700">
+                      <svg
+                        class="size-3.5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="m4 12 5 5L20 6" />
+                      </svg>
+                    </span>
+                    {b}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <!-- Columna del formulario -->
+          <div
+            class="rounded-3xl border border-taupe/40 bg-marfil p-7 shadow-[0_24px_60px_-30px_rgba(44,49,53,0.35)] sm:p-9"
+          >
+            <Formulario client:visible />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <!-- Botón flotante de WhatsApp -->
+  <BotonWhatsapp telefono={WSP_TEL} mensaje={WSP_MSG} />
+</Layout>

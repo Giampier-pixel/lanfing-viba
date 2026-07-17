@@ -1,0 +1,36 @@
+---
+interface Props {
+  variante?: 'primario' | 'secundario' | 'oscuro';
+  href?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { variante = 'primario', href, class: clase = '', ...rest } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition duration-200';
+
+const estilos: Record<string, string> = {
+  primario:
+    'bg-terracota text-crema shadow-[0_10px_24px_-10px_rgba(178,107,82,0.75)] hover:bg-terracota-600 hover:-translate-y-0.5',
+  secundario:
+    'border border-charcoal/20 text-charcoal hover:border-charcoal/40 hover:bg-charcoal/5',
+  oscuro:
+    'bg-charcoal text-crema hover:bg-charcoal-900 hover:-translate-y-0.5',
+};
+
+const cls = [base, estilos[variante], clase].join(' ');
+---
+
+{
+  href ? (
+    <a href={href} class={cls} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type="button" class={cls} {...rest}>
+      <slot />
+    </button>
+  )
+}
