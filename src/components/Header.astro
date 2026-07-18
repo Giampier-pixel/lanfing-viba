@@ -1,5 +1,6 @@
 ---
 import Boton from './Boton.astro';
+import LogoViba from '../assets/logo-viba.svg';
 ---
 
 <header
@@ -8,11 +9,7 @@ import Boton from './Boton.astro';
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <!-- Logo -->
     <a href="#inicio" class="flex items-center gap-3" aria-label="VIBA Consultores">
-      <span
-        class="grid size-10 place-items-center rounded-full border border-salvia/40 font-serif text-lg font-semibold text-salvia"
-      >
-        VB
-      </span>
+      <LogoViba class="h-8 w-auto text-salvia" aria-hidden="true" />
       <span class="flex flex-col leading-none">
         <span class="font-serif text-lg font-semibold text-charcoal">VIBA</span>
         <span
