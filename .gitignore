@@ -15,6 +15,11 @@ pnpm-debug.log*
 *.jpg
 *.jpeg
 *.webp
+# excepción: los assets del sitio SÍ van al repo (las referencias sueltas siguen fuera)
+!src/assets/*.webp
+
+# vercel (credenciales/vínculo local del proyecto, nunca al repo)
+.vercel/
 # environment variables
 .env
 .env.production
@@ -24,3 +29,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.vercel
+.env*
