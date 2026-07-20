@@ -1,11 +1,12 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
+import type { LeadEntrante } from '../lib/leads';
 
 /**
  * Isla React: formulario de captación de VIBA.
  * - Campos: nombre + correo (obligatorios) + WhatsApp (opcional).
  * - Validación en cliente y estados: idle → enviando → éxito / error.
  * - Honeypot anti-bot (campo trampa oculto).
- * - Envío SIMULADO por ahora; el destino real (Sheets / email / CRM) se conecta luego.
+ * - Envío real al endpoint /api/lead, incluyendo los UTM capturados de la URL.
  */
 
 type Estado = 'idle' | 'enviando' | 'exito' | 'error';
@@ -22,9 +23,14 @@ function validar(c: Campos): Errores {
   return e;
 }
 
-async function enviarLead(_datos: Campos): Promise<void> {
-  // TODO: conectar al destino real de los correos (Google Sheets / email / CRM).
-  await new Promise((r) => setTimeout(r, 900));
+async function enviarLead(datos: LeadEntrante): Promise<void> {
+  const res = await fetch('/api/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos),
+  });
+  const data = await res.json().catch(() => ({ ok: false }));
+  if (!res.ok || !data.ok) throw new Error('Envío fallido');
 }
 
 export default function Formulario() {
@@ -32,6 +38,17 @@ export default function Formulario() {
   const [errores, setErrores] = useState<Errores>({});
   const [estado, setEstado] = useState<Estado>('idle');
   const [trampa, setTrampa] = useState(''); // honeypot: si se llena, es bot
+  const meta = useRef<Pick<LeadEntrante, 'utm_source' | 'utm_medium' | 'utm_campaign' | 'pagina'>>({});
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    meta.current = {
+      utm_source: params.get('utm_source') ?? undefined,
+      utm_medium: params.get('utm_medium') ?? undefined,
+      utm_campaign: params.get('utm_campaign') ?? undefined,
+      pagina: window.location.pathname,
+    };
+  }, []);
 
   function actualizar(campo: keyof Campos, valor: string) {
     setCampos((c) => ({ ...c, [campo]: valor }));
@@ -51,7 +68,7 @@ export default function Formulario() {
     }
     setEstado('enviando');
     try {
-      await enviarLead(campos);
+      await enviarLead({ ...campos, empresa_web: trampa, ...meta.current });
       setEstado('exito');
     } catch {
       setEstado('error');

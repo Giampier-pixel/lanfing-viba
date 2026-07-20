@@ -31,3 +31,10 @@ pnpm-debug.log*
 .idea/
 .vercel
 .env*
+
+# credenciales de cuenta de servicio de Google (nunca al repo)
+*service-account*.json
+*.gserviceaccount.json
+
+# carpeta segura para claves locales que NUNCA deben ir al repo
+/secrets/
