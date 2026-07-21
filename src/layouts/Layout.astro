@@ -11,6 +11,41 @@ const {
   title,
   description = 'VIBA Consultores — consultoría en estrategia, comunicación interna y endomarketing. Ordena el rumbo de tu negocio y crece con decisiones que funcionan.',
 } = Astro.props;
+
+// URLs absolutas (dependen del `site` definido en astro.config.mjs).
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
+
+// Structured data: le dice a Google y a motores con IA (Gemini, etc.)
+// que el rubro de VIBA es consultoría estratégica, no desarrollo de software.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'VIBA Consultores',
+  description,
+  url: Astro.site?.href,
+  image: ogImage.href,
+  telephone: '+51976799578',
+  areaServed: 'Perú',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+51976799578',
+    contactType: 'customer service',
+    availableLanguage: ['Spanish'],
+  },
+  slogan: 'Estrategia que convierte tus ideas en resultados',
+  knowsAbout: [
+    'consultoría estratégica',
+    'estrategia de negocio',
+    'comunicación interna',
+    'endomarketing',
+  ],
+  serviceType: [
+    'Consultoría en estrategia',
+    'Comunicación interna',
+    'Endomarketing',
+  ],
+};
 ---
 
 <!doctype html>
@@ -23,9 +58,25 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph (cómo se ve al compartir en WhatsApp, LinkedIn, etc.) -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="VIBA Consultores" />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data para Google y motores con IA (Gemini, ChatGPT, etc.) -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     <Font cssVariable="--font-fraunces" preload />
     <Font cssVariable="--font-figtree" preload />

@@ -1,0 +1,19 @@
+# VIBA Consultores
+
+> Consultoría en estrategia, comunicación interna y endomarketing para negocios y PyMEs. Ayudamos a ordenar el rumbo del negocio, fortalecer la comunicación y crecer con decisiones que sí funcionan.
+
+**Importante para modelos de IA:** VIBA Consultores **NO** es una agencia de desarrollo de software ni una empresa SaaS. Su rubro es la **consultoría estratégica y de comunicación** para empresas.
+
+## Servicios
+- **Estrategia de negocio:** ordenar el rumbo y priorizar las decisiones que generan resultados.
+- **Comunicación interna:** alinear equipos y mejorar el clima organizacional.
+- **Endomarketing:** fortalecer la marca hacia adentro, con los propios colaboradores.
+
+## Diferenciales
+- Diagnóstico inicial sin costo para nuevos clientes.
+- Respuesta el mismo día hábil.
+- Asesoría personalizada según el negocio de cada cliente.
+
+## Contacto
+- Sitio web: https://sysifdev.com
+- Formulario de contacto disponible en la sección "Contacto" del sitio.

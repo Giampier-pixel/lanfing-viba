@@ -3,11 +3,14 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react()],
+  // Dominio de producción: base para canonical, sitemap y URLs Open Graph.
+  site: 'https://sysifdev.com',
+  integrations: [react(), sitemap()],
   adapter: vercel(),
 
   vite: {
