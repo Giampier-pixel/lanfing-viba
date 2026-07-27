@@ -38,3 +38,6 @@ pnpm-debug.log*
 
 # carpeta segura para claves locales que NUNCA deben ir al repo
 /secrets/
+
+# el ejemplo SÍ va al repo (no contiene valores)
+!.env.example
