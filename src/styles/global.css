@@ -88,6 +88,18 @@
   );
 }
 
+/* Paso de agenda: cuando el formulario muestra el calendario, la sección se
+   convierte en una sola columna ancha y se oculta el texto de venta, que ya
+   cumplió su función. Se resuelve con :has(), sin tocar el DOM desde React. */
+#participar:has([data-agenda-activa]) .participar-rejilla {
+  grid-template-columns: 1fr;
+  max-width: 44rem;
+  margin-inline: auto;
+}
+#participar:has([data-agenda-activa]) .participar-intro {
+  display: none;
+}
+
 /* Reveal escalonado del hero */
 @keyframes revelar {
   from {

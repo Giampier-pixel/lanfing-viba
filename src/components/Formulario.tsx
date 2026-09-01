@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { LeadEntrante } from '../lib/leads';
+import AgendaCalendly, { HAY_AGENDA } from './AgendaCalendly';
 
 /**
  * Isla React: formulario de participación de VIBA TECH.
@@ -7,6 +8,8 @@ import type { LeadEntrante } from '../lib/leads';
  * - Validación en cliente y estados: idle → enviando → éxito / error.
  * - Honeypot anti-bot (campo trampa oculto).
  * - Envío real al endpoint /api/lead, incluyendo los UTM capturados de la URL.
+ * - Al enviar: el lead queda guardado primero y recién entonces se ofrece la
+ *   agenda de Calendly (si está configurada), para no perder a quien no reserve.
  */
 
 type Estado = 'idle' | 'enviando' | 'exito' | 'error';
@@ -82,35 +85,57 @@ export default function Formulario() {
   }
 
   if (estado === 'exito') {
+    // `data-agenda-activa` hace que la sección pase a una sola columna ancha
+    // (regla :has() en global.css) para darle sitio al calendario.
     return (
-      <div role="status" aria-live="polite" className="text-center">
-        <span className="mx-auto grid size-12 place-items-center rounded-full bg-lima text-negro">
-          <svg
-            className="size-6"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+      <div
+        role="status"
+        aria-live="polite"
+        data-agenda-activa={HAY_AGENDA ? '' : undefined}
+      >
+        <div className="text-center">
+          <span className="mx-auto grid size-12 place-items-center rounded-full bg-lima text-negro">
+            <svg
+              className="size-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m4 12 5 5L20 6" />
+            </svg>
+          </span>
+          <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight text-blanco">
+            {HAY_AGENDA ? 'Ya tenemos tus datos' : '¡Gracias! Te contactaremos pronto'}
+          </h3>
+          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-hueso/60">
+            {HAY_AGENDA
+              ? 'Ahora elige el horario que mejor te quede para la videollamada de 45 minutos. Si prefieres, cierra esta página: igual te escribiremos.'
+              : 'Recibimos tus datos. El equipo de VIBA TECH te escribirá para coordinar una breve conversación.'}
+          </p>
+        </div>
+
+        {HAY_AGENDA && (
+          <div className="mt-6">
+            <AgendaCalendly
+              nombre={campos.nombre.trim()}
+              correo={campos.correo.trim()}
+              whatsapp={campos.whatsapp.trim() || undefined}
+            />
+          </div>
+        )}
+
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={reiniciar}
+            className="mt-5 text-sm font-semibold text-lima underline underline-offset-4 transition hover:text-lima-claro"
           >
-            <path d="m4 12 5 5L20 6" />
-          </svg>
-        </span>
-        <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight text-blanco">
-          ¡Gracias! Te contactaremos pronto
-        </h3>
-        <p className="mt-2 text-sm text-hueso/60">
-          Recibimos tus datos. El equipo de VIBA TECH te escribirá para coordinar
-          una breve conversación.
-        </p>
-        <button
-          type="button"
-          onClick={reiniciar}
-          className="mt-5 text-sm font-semibold text-lima underline underline-offset-4 transition hover:text-lima-claro"
-        >
-          Enviar otra solicitud
-        </button>
+            Enviar otra solicitud
+          </button>
+        </div>
       </div>
     );
   }
@@ -196,7 +221,7 @@ export default function Formulario() {
             Enviando…
           </>
         ) : (
-          'Enviar mis datos'
+          HAY_AGENDA ? 'Continuar y elegir horario' : 'Enviar mis datos'
         )}
       </button>
 
