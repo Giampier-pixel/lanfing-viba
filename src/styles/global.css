@@ -85,6 +85,10 @@
    cumplió su función. Se resuelve con :has(), sin tocar el DOM desde React. */
 #participar:has([data-agenda-activa]) .participar-rejilla {
   grid-template-columns: 1fr;
+  /* NO ensanchar. La página de Calendly limita su contenido a ~680px y pinta
+     el resto del iframe de blanco, y `background_color` no alcanza esa zona
+     (es cross-origin, no se puede tapar por CSS). Con 44rem el iframe queda
+     en ~648px y el contenido llena todo el ancho, sin franjas blancas. */
   max-width: 44rem;
   margin-inline: auto;
 }

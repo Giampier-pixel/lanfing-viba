@@ -109,6 +109,9 @@ export default function AgendaCalendly({ nombre, correo }: Props) {
         Calendly.initInlineWidget({
           url: urlDeAgenda(URL_CALENDLY, { nombre, correo }),
           parentElement: contenedor.current,
+          // Ajusta la altura del contenedor al contenido real del calendario
+          // (la vista de horarios es más alta que la de confirmación).
+          resize: true,
           prefill: {
             name: nombre,
             email: correo,
@@ -183,8 +186,17 @@ export default function AgendaCalendly({ nombre, correo }: Props) {
           Cargando horarios disponibles…
         </p>
       )}
-      {/* Calendly inyecta aquí su iframe y controla el alto */}
-      <div ref={contenedor} className="min-h-[640px] [&_iframe]:rounded-xl" />
+      {/*
+        Calendly inyecta aquí un iframe con `height:100%`. Un porcentaje se
+        resuelve contra la ALTURA del padre, no contra su `min-height`: con
+        `min-h-*` el 100% queda en `auto` y el iframe colapsa a los 150px que
+        el navegador da por defecto a un elemento reemplazado. De ahí que haga
+        falta una altura real. `resize: true` la reajusta luego al contenido.
+      */}
+      <div
+        ref={contenedor}
+        className="h-[750px] min-w-[320px] [&_iframe]:rounded-xl"
+      />
     </div>
   );
 }
