@@ -112,7 +112,7 @@ export default function Formulario() {
           </h3>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-hueso/60">
             {HAY_AGENDA
-              ? 'Ahora elige el horario que mejor te quede para la videollamada de 45 minutos. Si prefieres, cierra esta página: igual te escribiremos.'
+              ? 'Ahora elige el horario que mejor te quede para la videollamada de 30 minutos. Si prefieres, cierra esta página: igual te escribiremos.'
               : 'Recibimos tus datos. El equipo de VIBA TECH te escribirá para coordinar una breve conversación.'}
           </p>
         </div>
@@ -122,7 +122,6 @@ export default function Formulario() {
             <AgendaCalendly
               nombre={campos.nombre.trim()}
               correo={campos.correo.trim()}
-              whatsapp={campos.whatsapp.trim() || undefined}
             />
           </div>
         )}

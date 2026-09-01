@@ -44,7 +44,7 @@ function cargarWidget(): Promise<void> {
  * Construye la URL del calendario: tema oscuro + datos prellenados.
  *
  * El prefill se manda por DOS vías a propósito: como parámetros de URL
- * (`name`, `email`, `a1`) y como objeto `prefill` en initInlineWidget. En las
+ * (`name`, `email`) y como objeto `prefill` en initInlineWidget. En las
  * pruebas, el widget no volcaba el objeto `prefill` a la URL del iframe, así
  * que los parámetros de URL —el método documentado— garantizan el prellenado
  * pase lo que pase. Pasar ambos no genera conflicto.
@@ -65,8 +65,10 @@ function urlDeAgenda(base: string, datos: Props): string {
   // Prellenado.
   if (datos.nombre) params.set('name', datos.nombre);
   if (datos.correo) params.set('email', datos.correo);
-  // a1 = primera pregunta personalizada del tipo de evento (WhatsApp).
-  if (datos.whatsapp) params.set('a1', datos.whatsapp);
+  // No se manda `a1`: el tipo de evento no tiene preguntas personalizadas, así
+  // que ese slot lo ocupa la pregunta libre por defecto de Calendly y el
+  // teléfono acabaría dentro de ella. El WhatsApp ya viaja a la hoja de
+  // cálculo desde el formulario (`/api/lead`).
 
   // OJO: no se usa URLSearchParams.toString() porque codifica los espacios
   // como "+", y el widget de Calendly vuelve a codificar ese "+" como %2B.
@@ -82,10 +84,9 @@ function urlDeAgenda(base: string, datos: Props): string {
 interface Props {
   nombre: string;
   correo: string;
-  whatsapp?: string;
 }
 
-export default function AgendaCalendly({ nombre, correo, whatsapp }: Props) {
+export default function AgendaCalendly({ nombre, correo }: Props) {
   const contenedor = useRef<HTMLDivElement>(null);
   const [estado, setEstado] = useState<Estado>('cargando');
 
@@ -106,12 +107,11 @@ export default function AgendaCalendly({ nombre, correo, whatsapp }: Props) {
         ).Calendly;
 
         Calendly.initInlineWidget({
-          url: urlDeAgenda(URL_CALENDLY, { nombre, correo, whatsapp }),
+          url: urlDeAgenda(URL_CALENDLY, { nombre, correo }),
           parentElement: contenedor.current,
           prefill: {
             name: nombre,
             email: correo,
-            customAnswers: whatsapp ? { a1: whatsapp } : {},
           },
         });
         setEstado('listo');
@@ -123,7 +123,7 @@ export default function AgendaCalendly({ nombre, correo, whatsapp }: Props) {
     return () => {
       vivo = false;
     };
-  }, [nombre, correo, whatsapp]);
+  }, [nombre, correo]);
 
   // Calendly avisa por postMessage cuando la reserva se completa.
   useEffect(() => {
