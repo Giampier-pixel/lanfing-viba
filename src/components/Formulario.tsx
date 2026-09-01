@@ -199,7 +199,7 @@ export default function Formulario() {
       <button
         type="submit"
         disabled={estado === 'enviando'}
-        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lima px-6 py-3 text-sm font-semibold text-negro shadow-[0_10px_30px_-10px_rgba(181,244,0,0.7)] transition hover:bg-lima-claro disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lima px-6 py-3 text-sm font-semibold text-negro transition hover:bg-lima-claro disabled:cursor-not-allowed disabled:opacity-60"
       >
         {estado === 'enviando' ? (
           <>

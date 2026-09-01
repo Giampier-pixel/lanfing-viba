@@ -64,14 +64,6 @@
    Utilidades de marca
 --------------------------------------------------------------------------- */
 
-/* Resplandor neón del isotipo y de los elementos lima destacados.
-   El manual prohíbe sombras sobre el logotipo, así que el glow se aplica
-   solo a ilustraciones y superficies, nunca al lockup de marca. */
-.glow-lima {
-  filter: drop-shadow(0 0 12px rgb(181 244 0 / 0.45))
-          drop-shadow(0 0 40px rgb(181 244 0 / 0.2));
-}
-
 /* Trama de puntos del material gráfico (esquina derecha de las referencias) */
 .trama-puntos {
   background-image: radial-gradient(currentColor 1px, transparent 1px);
@@ -115,21 +107,11 @@
   animation: revelar 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Pulso lento del halo neón detrás de la ilustración del hero */
-@keyframes pulso-neon {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50%      { opacity: 0.9;  transform: scale(1.05); }
-}
-.pulso-neon {
-  animation: pulso-neon 6s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .revelar,
-  .pulso-neon {
+  .revelar {
     animation: none;
   }
 }

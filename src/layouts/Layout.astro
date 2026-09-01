@@ -3,12 +3,18 @@ import { Font } from 'astro:assets';
 import '../styles/global.css';
 
 interface Props {
+  /** Título de la pestaña del navegador. Corto: se trunca enseguida. */
   title: string;
+  /** Título al compartir el enlace (WhatsApp, LinkedIn…). Aquí sí conviene
+   *  el gancho completo, porque es lo que se lee antes de entrar.
+   *  Si no se pasa, cae en `title`. */
+  ogTitle?: string;
   description?: string;
 }
 
 const {
   title,
+  ogTitle = title,
   description = 'VIBA TECH — plataforma SaaS que acelera la inducción y la comunicación interna del personal operativo. Queremos entender cómo las MYPES incorporan y capacitan a su gente.',
 } = Astro.props;
 
@@ -74,7 +80,7 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph (cómo se ve al compartir en WhatsApp, LinkedIn, etc.) -->
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={ogTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -90,7 +96,7 @@ const jsonLd = {
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
