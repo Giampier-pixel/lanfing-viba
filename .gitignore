@@ -17,6 +17,7 @@ pnpm-debug.log*
 *.webp
 # excepción: los assets del sitio SÍ van al repo (las referencias sueltas siguen fuera)
 !src/assets/*.webp
+!public/og-image.jpg
 
 # vercel (credenciales/vínculo local del proyecto, nunca al repo)
 .vercel/
