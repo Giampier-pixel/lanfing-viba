@@ -1,42 +1,47 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   VIBA Consultores — tokens de marca (fuente de verdad: design-viba.md)
-   Paleta oficial + colores de apoyo del moodboard.
+   VIBA TECH — tokens de marca
+   Fuente de verdad: Manual de Identidad Visual VIBA TECH 2026 (§3 y §4).
+   Identidad dark-first: negro profundo + verde lima neón como único acento
+   brillante. Coral y ámbar son colores de soporte, nunca protagonistas.
 --------------------------------------------------------------------------- */
 @theme {
-  /* Neutros cálidos */
-  --color-crema: #faf6f0;   /* Blanco Seda — fondo base */
-  --color-marfil: #fffdf9;  /* superficie de tarjetas (un punto más claro) */
-  --color-charcoal: #2c3135;
-  --color-charcoal-900: #1f2427;
-  --color-gris: #706e6b;    /* Muted Grey — texto secundario */
+  /* Primario — Verde Lima / Neón */
+  --color-lima: #b5f400;       /* oficial: isotipo, CTA, acentos */
+  --color-lima-claro: #c6ff1a; /* hover y estados activos */
+  --color-lima-oscuro: #8fc200; /* pressed / bordes sobre superficies claras */
 
-  /* Marca */
-  --color-salvia: #799484;
-  --color-salvia-600: #5f7a6b;
-  --color-salvia-700: #4c6456;
+  /* Negro Profundo / Dark Slate */
+  --color-negro: #050505;      /* fondo base */
+  --color-carbon: #0d0d0d;     /* superficie de tarjetas */
+  --color-pizarra: #0f172a;    /* dark slate, degradados y profundidad */
+  --color-borde: #1f1f1f;      /* separadores sobre negro */
 
-  /* Acento */
-  --color-terracota: #b26b52;
-  --color-terracota-600: #9a5842;
-  --color-terracota-700: #83452f;
+  /* Soporte */
+  --color-coral: #ff3366;      /* cultura humana, errores, notificaciones */
+  --color-coral-claro: #ff2e63;
+  --color-ambar: #ff9f1c;      /* onboarding, bienvenida, alertas */
 
-  /* Apoyo / texturas (del moodboard — aprox., confirmar) */
-  --color-champagne: #e8dcc8;
-  --color-brass: #b08d57;
-  --color-taupe: #b7aba0;
+  /* Blancos */
+  --color-blanco: #ffffff;
+  --color-hueso: #f8f8f8;      /* tipografía suavizada sobre negro */
 }
 
-/* Tipografía: mapea las variables que inyecta la Fonts API de Astro */
+/* Tipografía: mapea las variables que inyecta la Fonts API de Astro.
+   Space Grotesk para titulares (carácter geométrico/futurista),
+   Inter para texto corrido (legibilidad en pantalla). */
 @theme inline {
-  --font-serif: var(--font-fraunces);
-  --font-sans: var(--font-figtree);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Evita el flash blanco en overscroll sobre fondo negro */
+    background-color: var(--color-negro);
+    color-scheme: dark;
   }
   h1, h2, h3 {
     text-wrap: balance;
@@ -44,6 +49,43 @@
   p {
     text-wrap: pretty;
   }
+  /* Foco visible coherente con la marca en toda la landing */
+  :focus-visible {
+    outline: 2px solid var(--color-lima);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background-color: var(--color-lima);
+    color: var(--color-negro);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilidades de marca
+--------------------------------------------------------------------------- */
+
+/* Resplandor neón del isotipo y de los elementos lima destacados.
+   El manual prohíbe sombras sobre el logotipo, así que el glow se aplica
+   solo a ilustraciones y superficies, nunca al lockup de marca. */
+.glow-lima {
+  filter: drop-shadow(0 0 12px rgb(181 244 0 / 0.45))
+          drop-shadow(0 0 40px rgb(181 244 0 / 0.2));
+}
+
+/* Trama de puntos del material gráfico (esquina derecha de las referencias) */
+.trama-puntos {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Curva orgánica de fondo: la "onda" negra sobre negro de las piezas VIBA */
+.velo-curvo {
+  background: radial-gradient(
+    75% 60% at 78% 42%,
+    rgb(181 244 0 / 0.09) 0%,
+    rgb(15 23 42 / 0.55) 42%,
+    transparent 72%
+  );
 }
 
 /* Reveal escalonado del hero */
@@ -61,11 +103,21 @@
   animation: revelar 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Pulso lento del halo neón detrás de la ilustración del hero */
+@keyframes pulso-neon {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 0.9;  transform: scale(1.05); }
+}
+.pulso-neon {
+  animation: pulso-neon 6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .revelar {
+  .revelar,
+  .pulso-neon {
     animation: none;
   }
 }

@@ -1,70 +1,139 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-// Hero nuevo (megáfono); el anterior queda de respaldo en './Hero.astro'
-import Hero from '../components/HeroMegafono.astro';
+import Hero from '../components/HeroTech.astro';
 import Footer from '../components/Footer.astro';
 import BotonWhatsapp from '../components/BotonWhatsapp.astro';
 import Formulario from '../components/Formulario.tsx';
 
 const WSP_TEL = '51976799578'; // WhatsApp de VIBA (+51 976 799 578)
 const WSP_MSG =
-  'Hola 👋 Quiero saber más sobre la asesoría en estrategia de VIBA Consultores.';
+  'Hola 👋 Quiero participar en el estudio de VIBA TECH sobre incorporación y capacitación en MYPES.';
 
-const beneficios = [
-  'Respuesta el mismo día hábil',
-  'Diagnóstico inicial sin costo',
-  'Asesoría personalizada para tu negocio',
+// Perfiles que buscamos (pieza de referencia 1).
+const perfiles = [
+  {
+    titulo: 'Dueño / Administrador / Capacitador',
+    texto:
+      'Eres responsable de incorporar, capacitar o supervisar personal operativo en tu empresa.',
+    // persona con banda de responsable
+    d: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0',
+  },
+  {
+    titulo: 'Colaborador operativo recién incorporado',
+    texto:
+      'Ingresaste hace poco a trabajar en una MYPE y quieres compartir tu experiencia.',
+    // persona con destello
+    d: 'M11 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM3 21a8 8 0 0 1 15.3-3.3M19 3l1.2 2.8L23 7l-2.8 1.2L19 11l-1.2-2.8L15 7l2.8-1.2L19 3Z',
+  },
 ];
 ---
 
-<Layout title="VIBA Consultores — Estrategia que da resultados">
+<Layout title="VIBA TECH — Tu experiencia construye lo que sí sirve">
   <Header />
 
   <main>
     <Hero />
 
-    <!-- Contacto / Formulario de captación -->
-    <section id="contacto" class="bg-champagne/20 py-24">
+    <!-- A quién buscamos -->
+    <section class="border-y border-white/10 bg-carbon/60 py-20">
+      <div class="mx-auto max-w-5xl px-6">
+        <h2
+          class="text-center font-display text-sm font-semibold uppercase tracking-[0.28em] text-lima"
+        >
+          Buscamos conversar contigo si eres
+        </h2>
+
+        <ul class="mt-10 grid gap-5 md:grid-cols-2">
+          {
+            perfiles.map((p) => (
+              <li class="rounded-2xl border border-white/10 bg-negro/60 p-7 transition hover:border-lima/40">
+                <span class="grid size-12 place-items-center rounded-full border border-lima/40 text-lima">
+                  <svg
+                    class="size-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d={p.d} />
+                  </svg>
+                </span>
+                <h3 class="mt-5 font-display text-lg font-bold uppercase leading-snug tracking-tight text-blanco">
+                  {p.titulo}
+                </h3>
+                <p class="mt-2 leading-relaxed text-hueso/65">{p.texto}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Formulario de participación -->
+    <section id="participar" class="py-24">
       <div class="mx-auto max-w-5xl px-6">
         <div class="grid items-center gap-12 md:grid-cols-2">
           <!-- Columna de texto -->
           <div>
-            <h2 class="font-serif text-4xl font-semibold leading-tight text-charcoal">
-              Cuéntanos de tu negocio y te contactamos.
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-lima/30 bg-lima/5 px-4 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.18em] text-lima"
+            >
+              <svg
+                class="size-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 5h11M4 10h8M4 15h6M15.5 18.5 21 13l-2-2-5.5 5.5L13 19l2.5-.5Z"
+                ></path>
+              </svg>
+              Formulario de participación
+            </span>
+
+            <h2
+              class="mt-5 font-display text-4xl font-bold uppercase leading-[0.95] tracking-tight text-blanco"
+            >
+              Cuéntanos tu <span class="text-lima">experiencia</span>
             </h2>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-charcoal/70">
-              Déjanos tus datos y un consultor de VIBA se pondrá en contacto
-              contigo para conversar sobre tu estrategia. Sin compromiso.
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-hueso/70">
+              Tu información nos ayudará a contactarte para una breve
+              conversación. Sin compromiso y sin costo.
             </p>
 
-            <ul class="mt-8 space-y-3">
-              {
-                beneficios.map((b) => (
-                  <li class="flex items-center gap-3 text-sm text-charcoal/80">
-                    <span class="grid size-6 shrink-0 place-items-center rounded-full bg-salvia/15 text-salvia-700">
-                      <svg
-                        class="size-3.5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="m4 12 5 5L20 6" />
-                      </svg>
-                    </span>
-                    {b}
-                  </li>
-                ))
-              }
-            </ul>
+            <p
+              class="mt-8 flex items-start gap-3 rounded-2xl border border-white/10 bg-carbon/60 p-5 text-sm leading-relaxed text-hueso/75"
+            >
+              <svg
+                class="mt-0.5 size-5 shrink-0 text-lima"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"></path>
+              </svg>
+              <span>
+                <strong class="font-semibold text-lima">VIBA TECH</strong> —
+                Onboarding exprés. Equipos más fuertes.
+              </span>
+            </p>
           </div>
 
           <!-- Columna del formulario -->
           <div
-            class="rounded-3xl border border-taupe/40 bg-marfil p-7 shadow-[0_24px_60px_-30px_rgba(44,49,53,0.35)] sm:p-9"
+            class="rounded-3xl border border-white/10 bg-carbon p-7 shadow-[0_30px_70px_-40px_rgba(181,244,0,0.35)] sm:p-9"
           >
             <Formulario client:visible />
           </div>

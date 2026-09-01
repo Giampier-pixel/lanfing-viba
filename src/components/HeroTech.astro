@@ -1,0 +1,189 @@
+---
+import Boton from './Boton.astro';
+
+const WSP_TEL = '51976799578'; // WhatsApp de VIBA (+51 976 799 578)
+const WSP_MSG =
+  'Hola 👋 Quiero participar en el estudio de VIBA TECH sobre incorporación y capacitación en MYPES.';
+const wspHref = `https://wa.me/${WSP_TEL}?text=${encodeURIComponent(WSP_MSG)}`;
+
+// Señales de confianza de la pieza de referencia.
+const señales = [
+  {
+    texto: 'Toma 2 minutos',
+    // reloj
+    d: 'M12 7v5l3 2M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z',
+  },
+  {
+    texto: 'Confidencial',
+    // escudo con check
+    d: 'M12 3 4.5 6v6c0 4.4 3.2 8.1 7.5 9 4.3-.9 7.5-4.6 7.5-9V6L12 3Zm-3 8.8 2.2 2.2L15 10',
+  },
+  {
+    texto: 'Tu opinión importa',
+    // corazón
+    d: 'M12 20s-7.5-4.4-7.5-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7.5 2.6c0 5-7.5 9.4-7.5 9.4Z',
+  },
+];
+---
+
+<section id="inicio" class="relative overflow-hidden">
+  <!-- Velo curvo: la "onda" negro sobre negro del material gráfico VIBA -->
+  <div class="velo-curvo pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+  <!-- Trama de puntos (esquina derecha de las piezas de marca) -->
+  <div
+    class="trama-puntos pointer-events-none absolute right-0 top-24 hidden h-64 w-56 text-lima/25 [mask-image:linear-gradient(to_left,black,transparent)] lg:block"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl items-center px-6 pb-8 pt-10 md:pt-16 lg:grid-cols-2 lg:gap-12"
+  >
+    <div class="max-w-xl max-lg:contents">
+      <p
+        class="revelar font-display text-sm font-medium uppercase tracking-[0.32em] text-hueso/70 max-lg:order-1"
+        style="animation-delay: 60ms"
+      >
+        Tu experiencia
+      </p>
+
+      <h1
+        class="revelar mt-3 font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight sm:text-6xl lg:text-[4.2rem] max-lg:order-2"
+        style="animation-delay: 120ms"
+      >
+        <span class="block text-lima">Construye</span>
+        <span class="block text-blanco">
+          lo que <span
+            class="relative whitespace-nowrap"
+            >sí<svg
+              class="absolute -bottom-1 left-0 h-2 w-full text-lima"
+              viewBox="0 0 100 10"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              ><path
+                d="M3 6h94"
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"></path></svg
+            ></span
+          > sirve
+        </span>
+      </h1>
+
+      <!-- Subtítulo con barra lima a la izquierda, como en la referencia -->
+      <p
+        class="revelar mt-7 max-w-lg border-l-2 border-lima pl-5 text-lg leading-relaxed text-hueso/80 max-lg:order-4"
+        style="animation-delay: 200ms"
+      >
+        Queremos entender cómo las MYPES <strong
+          class="font-semibold text-lima">incorporan y capacitan</strong
+        > a su personal.
+      </p>
+
+      <div
+        class="revelar mt-8 flex flex-col gap-3 sm:flex-row sm:items-center max-lg:order-5"
+        style="animation-delay: 260ms"
+      >
+        <Boton variante="primario" href="#participar">Quiero participar</Boton>
+        <Boton variante="secundario" href={wspHref} target="_blank" rel="noopener">
+          Escríbenos por WhatsApp
+        </Boton>
+      </div>
+    </div>
+
+    <!-- Ilustración: lupa neón sobre el colaborador (pieza de referencia) -->
+    <div
+      class="revelar relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg max-lg:order-3 max-lg:mt-10"
+      style="animation-delay: 180ms"
+    >
+      <!-- Halo neón difuso detrás de la lupa -->
+      <div
+        class="pulso-neon pointer-events-none absolute left-1/2 top-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-lima/20 blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+
+      <svg
+        viewBox="0 0 420 400"
+        fill="none"
+        class="relative w-full"
+        role="img"
+        aria-label="Una lupa destaca a un colaborador entre varias personas"
+      >
+        <!-- Personas en segundo plano (siluetas oscuras) -->
+        <g fill="#1c1c1c">
+          <circle cx="66" cy="196" r="30"></circle>
+          <path d="M26 264c0-32 18-52 40-52s40 20 40 52z"></path>
+          <circle cx="356" cy="196" r="30"></circle>
+          <path d="M316 264c0-32 18-52 40-52s40 20 40 52z"></path>
+        </g>
+
+        <!-- Lupa neón -->
+        <g class="glow-lima" color="#b5f400">
+          <!-- Destellos superiores -->
+          <g stroke="currentColor" stroke-width="9" stroke-linecap="round">
+            <path d="M210 20v26"></path>
+            <path d="M166 30l11 24"></path>
+            <path d="M254 30l-11 24"></path>
+          </g>
+
+          <!-- Mango -->
+          <path
+            d="M272 246 338 314"
+            stroke="currentColor"
+            stroke-width="30"
+            stroke-linecap="round"></path>
+
+          <!-- Colaborador enfocado, recortado por el aro -->
+          <clipPath id="aro-lupa">
+            <circle cx="200" cy="172" r="93"></circle>
+          </clipPath>
+          <g clip-path="url(#aro-lupa)" fill="currentColor">
+            <circle cx="200" cy="140" r="32"></circle>
+            <path d="M158 236c0-32 19-52 42-52s42 20 42 52z"></path>
+          </g>
+
+          <!-- Aro -->
+          <circle
+            cx="200"
+            cy="172"
+            r="104"
+            stroke="currentColor"
+            stroke-width="22"></circle>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Señales de confianza -->
+  <div class="relative mx-auto max-w-6xl px-6 pb-16">
+    <ul
+      class="revelar flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-0"
+      style="animation-delay: 320ms"
+    >
+      {
+        señales.map((s) => (
+          <li class="flex items-center gap-3 sm:flex-1 sm:flex-col sm:gap-2 sm:border-l sm:border-white/10 sm:px-6 sm:text-center sm:first:border-l-0">
+            <svg
+              class="size-6 shrink-0 text-lima"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d={s.d} />
+            </svg>
+            <span class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-lima">
+              {s.texto}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

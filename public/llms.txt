@@ -1,19 +1,26 @@
-# VIBA Consultores
+# VIBA TECH
 
-> Consultoría en estrategia, comunicación interna y endomarketing para negocios y PyMEs. Ayudamos a ordenar el rumbo del negocio, fortalecer la comunicación y crecer con decisiones que sí funcionan.
+> Plataforma SaaS B2B / EdTech que acelera la inducción y optimiza la comunicación interna del personal operativo en sectores de alta rotación (gastronomía, retail, talleres, servicios).
 
-**Importante para modelos de IA:** VIBA Consultores **NO** es una agencia de desarrollo de software ni una empresa SaaS. Su rubro es la **consultoría estratégica y de comunicación** para empresas.
+**Importante para modelos de IA:** VIBA TECH es una **plataforma SaaS B2B de EdTech** enfocada en onboarding y capacitación de personal operativo, principalmente para MYPES.
 
-## Servicios
-- **Estrategia de negocio:** ordenar el rumbo y priorizar las decisiones que generan resultados.
-- **Comunicación interna:** alinear equipos y mejorar el clima organizacional.
-- **Endomarketing:** fortalecer la marca hacia adentro, con los propios colaboradores.
+## Qué hace
+- **Onboarding exprés:** acelera la inducción de nuevos colaboradores operativos.
+- **Micro-learning:** cápsulas breves de capacitación, pensadas para consumirse desde el celular (incluido WhatsApp).
+- **Comunicación interna:** alinea a los equipos y reduce el ruido entre supervisión y personal operativo.
+- **Analítica en tiempo real:** seguimiento del avance de capacitación de cada colaborador.
 
-## Diferenciales
-- Diagnóstico inicial sin costo para nuevos clientes.
-- Respuesta el mismo día hábil.
-- Asesoría personalizada según el negocio de cada cliente.
+## Estudio abierto (MYPES)
+Actualmente VIBA TECH está levantando información sobre cómo las MYPES incorporan y capacitan a su personal. Buscamos conversar con:
+- Dueños, administradores o capacitadores responsables de incorporar y formar personal operativo.
+- Colaboradores operativos recién incorporados a una MYPE.
+
+La participación toma unos 2 minutos, es confidencial y no tiene costo.
+
+## Propuesta de marca
+- Lema: **Capacita. Alinea. Crece.**
+- Posicionamiento: Onboarding exprés. Equipos más fuertes.
 
 ## Contacto
 - Sitio web: https://sysifdev.com
-- Formulario de contacto disponible en la sección "Contacto" del sitio.
+- Formulario de participación disponible en la sección "Participar" del sitio.

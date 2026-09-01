@@ -9,41 +9,51 @@ interface Props {
 
 const {
   title,
-  description = 'VIBA Consultores — consultoría en estrategia, comunicación interna y endomarketing. Ordena el rumbo de tu negocio y crece con decisiones que funcionan.',
+  description = 'VIBA TECH — plataforma SaaS que acelera la inducción y la comunicación interna del personal operativo. Queremos entender cómo las MYPES incorporan y capacitan a su gente.',
 } = Astro.props;
 
 // URLs absolutas (dependen del `site` definido en astro.config.mjs).
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og-image.jpg', Astro.site);
 
-// Structured data: le dice a Google y a motores con IA (Gemini, etc.)
-// que el rubro de VIBA es consultoría estratégica, no desarrollo de software.
+// Structured data: posiciona a VIBA TECH como plataforma SaaS B2B / EdTech
+// para inducción y capacitación de personal operativo.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'VIBA Consultores',
+  '@type': 'SoftwareApplication',
+  name: 'VIBA TECH',
+  applicationCategory: 'BusinessApplication',
   description,
   url: Astro.site?.href,
   image: ogImage.href,
-  telephone: '+51976799578',
-  areaServed: 'Perú',
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+51976799578',
-    contactType: 'customer service',
-    availableLanguage: ['Spanish'],
+  slogan: 'Capacita. Alinea. Crece.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'PEN',
+    description: 'Participación sin costo en el estudio de onboarding para MYPES',
   },
-  slogan: 'Estrategia que convierte tus ideas en resultados',
-  knowsAbout: [
-    'consultoría estratégica',
-    'estrategia de negocio',
+  publisher: {
+    '@type': 'Organization',
+    name: 'VIBA TECH',
+    url: Astro.site?.href,
+    logo: ogImage.href,
+    slogan: 'Capacita. Alinea. Crece.',
+    areaServed: 'Perú',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+51976799578',
+      contactType: 'customer service',
+      availableLanguage: ['Spanish'],
+    },
+  },
+  keywords: [
+    'onboarding de personal operativo',
+    'capacitación para MYPES',
+    'inducción de personal',
     'comunicación interna',
-    'endomarketing',
-  ],
-  serviceType: [
-    'Consultoría en estrategia',
-    'Comunicación interna',
-    'Endomarketing',
+    'micro-learning por WhatsApp',
+    'EdTech',
   ],
 };
 ---
@@ -55,6 +65,7 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#050505" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -66,7 +77,7 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="VIBA Consultores" />
+    <meta property="og:site_name" content="VIBA TECH" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter Card -->
@@ -78,12 +89,12 @@ const jsonLd = {
     <!-- Structured data para Google y motores con IA (Gemini, ChatGPT, etc.) -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
-    <Font cssVariable="--font-fraunces" preload />
-    <Font cssVariable="--font-figtree" preload />
+    <Font cssVariable="--font-space-grotesk" preload />
+    <Font cssVariable="--font-inter" preload />
 
     <!-- F-futuro: aquí irá la etiqueta de GA4 -->
   </head>
-  <body class="min-h-screen bg-crema font-sans text-charcoal antialiased">
+  <body class="min-h-screen bg-negro font-sans text-hueso antialiased">
     <slot />
   </body>
 </html>

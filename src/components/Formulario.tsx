@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import type { LeadEntrante } from '../lib/leads';
 
 /**
- * Isla React: formulario de captación de VIBA.
+ * Isla React: formulario de participación de VIBA TECH.
  * - Campos: nombre + correo (obligatorios) + WhatsApp (opcional).
  * - Validación en cliente y estados: idle → enviando → éxito / error.
  * - Honeypot anti-bot (campo trampa oculto).
@@ -84,7 +84,7 @@ export default function Formulario() {
   if (estado === 'exito') {
     return (
       <div role="status" aria-live="polite" className="text-center">
-        <span className="mx-auto grid size-12 place-items-center rounded-full bg-salvia text-crema">
+        <span className="mx-auto grid size-12 place-items-center rounded-full bg-lima text-negro">
           <svg
             className="size-6"
             viewBox="0 0 24 24"
@@ -97,17 +97,17 @@ export default function Formulario() {
             <path d="m4 12 5 5L20 6" />
           </svg>
         </span>
-        <h3 className="mt-4 font-serif text-2xl font-semibold text-charcoal">
+        <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight text-blanco">
           ¡Gracias! Te contactaremos pronto
         </h3>
-        <p className="mt-2 text-sm text-charcoal/60">
-          Recibimos tus datos. Un consultor de VIBA se pondrá en contacto contigo
-          muy pronto.
+        <p className="mt-2 text-sm text-hueso/60">
+          Recibimos tus datos. El equipo de VIBA TECH te escribirá para coordinar
+          una breve conversación.
         </p>
         <button
           type="button"
           onClick={reiniciar}
-          className="mt-5 text-sm font-semibold text-terracota underline underline-offset-4 transition hover:text-terracota-600"
+          className="mt-5 text-sm font-semibold text-lima underline underline-offset-4 transition hover:text-lima-claro"
         >
           Enviar otra solicitud
         </button>
@@ -165,7 +165,7 @@ export default function Formulario() {
       {estado === 'error' && (
         <p
           role="alert"
-          className="rounded-md border border-terracota-700/30 bg-terracota/5 px-4 py-3 text-sm text-terracota-700"
+          className="rounded-xl border border-coral/40 bg-coral/10 px-4 py-3 text-sm text-coral"
         >
           No pudimos enviar tus datos. Revisa tu conexión e inténtalo otra vez.
         </p>
@@ -174,7 +174,7 @@ export default function Formulario() {
       <button
         type="submit"
         disabled={estado === 'enviando'}
-        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-terracota px-6 py-3 text-sm font-semibold text-crema shadow-[0_10px_24px_-10px_rgba(178,107,82,0.75)] transition hover:bg-terracota-600 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-lima px-6 py-3 text-sm font-semibold text-negro shadow-[0_10px_30px_-10px_rgba(181,244,0,0.7)] transition hover:bg-lima-claro disabled:cursor-not-allowed disabled:opacity-60"
       >
         {estado === 'enviando' ? (
           <>
@@ -200,9 +200,9 @@ export default function Formulario() {
         )}
       </button>
 
-      <p className="text-center text-xs text-charcoal/45">
+      <p className="text-center text-xs text-hueso/40">
         Al enviar aceptas que te contactemos. Sin spam ·{' '}
-        <a href="#" className="underline underline-offset-2 hover:text-charcoal/70">
+        <a href="#" className="underline underline-offset-2 hover:text-lima">
           Política de privacidad
         </a>
       </p>
@@ -237,10 +237,10 @@ function Campo({
 }: CampoProps) {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-charcoal">
+      <label htmlFor={id} className="block text-sm font-medium text-hueso">
         {etiqueta}
         {opcional && (
-          <span className="font-normal text-charcoal/45"> (opcional)</span>
+          <span className="font-normal text-hueso/40"> (opcional)</span>
         )}
       </label>
       <input
@@ -255,14 +255,14 @@ function Campo({
         required={!opcional}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={`mt-1.5 w-full rounded-xl border bg-crema px-4 py-3 text-charcoal transition placeholder:text-charcoal/35 focus:outline-none focus:ring-4 ${
+        className={`mt-1.5 w-full rounded-xl border bg-negro px-4 py-3 text-hueso transition placeholder:text-hueso/25 focus:outline-none focus:ring-4 ${
           error
-            ? 'border-terracota-700 focus:border-terracota-700 focus:ring-terracota-700/20'
-            : 'border-taupe/60 focus:border-salvia focus:ring-salvia/25'
+            ? 'border-coral focus:border-coral focus:ring-coral/20'
+            : 'border-white/15 hover:border-white/30 focus:border-lima focus:ring-lima/20'
         }`}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-terracota-700">
+        <p id={`${id}-error`} className="mt-1.5 text-sm text-coral">
           {error}
         </p>
       )}

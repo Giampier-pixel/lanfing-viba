@@ -1,0 +1,52 @@
+---
+import Isotipo from './Isotipo.astro';
+
+/**
+ * Lockup horizontal de VIBA TECH (versión principal, sobre fondo oscuro):
+ * isotipo lima + "VIBA" en blanco + "TECH" en lima debajo.
+ *
+ * Proporciones tomadas del logo oficial: "TECH" ocupa ~52% del ancho de
+ * "VIBA", con tracking amplio y ligeramente indentado. La "A" lleva el nodo
+ * interior que conecta la tipografía con el isotipo (Manual §2).
+ *
+ * `tamaño` controla el cuerpo de "VIBA"; todo lo demás escala en `em`.
+ */
+interface Props {
+  /** Clases para el isotipo (alto). */
+  claseIsotipo?: string;
+  /** Clases para el bloque tipográfico (cuerpo de "VIBA"). */
+  claseTexto?: string;
+  class?: string;
+}
+
+const {
+  claseIsotipo = 'h-9',
+  claseTexto = 'text-lg',
+  class: clase = '',
+} = Astro.props;
+---
+
+<span class={`inline-flex items-center gap-3 ${clase}`}>
+  <Isotipo class={`${claseIsotipo} w-auto text-lima`} />
+
+  <span class={`flex flex-col leading-none ${claseTexto}`}>
+    <!-- "VIBA" con el nodo lima dentro de la A: centrado en el ancho del
+         glifo y al 79.6% de la altura de mayúscula, como en el logo oficial. -->
+    <span class="font-display font-bold leading-none tracking-tight text-blanco">
+      VIB<span class="relative inline-block"
+        >A<span
+          class="absolute left-1/2 top-[0.62em] size-[0.17em] -translate-x-1/2 rounded-full bg-lima"
+          aria-hidden="true"></span></span
+      >
+    </span>
+
+    <!-- "TECH": lima, tracking amplio y bajo "VIBA". El ratio del logo
+         oficial (0.28x) resulta ilegible a tamaño de cabecera, así que se
+         sube el cuerpo conservando el carácter del lockup. -->
+    <span
+      class="mt-[0.22em] pl-[0.06em] font-display text-[0.5em] font-semibold uppercase leading-none tracking-[0.4em] text-lima"
+    >
+      Tech
+    </span>
+  </span>
+</span>

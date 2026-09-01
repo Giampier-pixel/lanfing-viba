@@ -72,7 +72,7 @@ export function responder(entrada: EntradaBot, proyectos: Proyecto[]): string {
     // así evitamos el saludo con espacio colgante ("¡Hola !").
     const nombre = primerNombre(entrada.nombre ?? '');
     const saludo = nombre ? `¡Hola ${nombre}!` : '¡Hola!';
-    return `${saludo} Soy el asistente de VIBA Consultores.\n\n${AYUDA}`;
+    return `${saludo} Soy el asistente de VIBA TECH.\n\n${AYUDA}`;
   }
 
   return AYUDA;

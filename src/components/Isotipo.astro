@@ -1,0 +1,43 @@
+---
+/**
+ * Isotipo VIBA TECH.
+ * Geometría trazada sobre el logo oficial (`logo oficial.jpeg`) y descrita
+ * en el Manual de Identidad §2:
+ *  - Ondas superiores → conectividad móvil y micro-learning.
+ *  - Nodo central     → el colaborador (factor humano) en el centro.
+ *  - "V" inferior     → estructura B2B y solidez del software.
+ *
+ * La "V" es un chevron sólido de lados verticales que converge en punta
+ * redondeada; el nodo flota en su abertura, sin tocar los brazos.
+ * Se pinta con `currentColor` para admitir la versión monocromática (§9).
+ */
+interface Props {
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { class: clase = '', ...rest } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 100 108"
+  fill="none"
+  class={clase}
+  role="img"
+  aria-hidden="true"
+  {...rest}
+>
+  <!-- Ondas superiores: conectividad -->
+  <g stroke="currentColor" stroke-width="5" stroke-linecap="round">
+    <path d="M14.4 22.1a43 43 0 0 1 72.2 0"></path>
+    <path d="M28.9 31.5a25.75 25.75 0 0 1 43.2 0"></path>
+  </g>
+
+  <!-- Nodo central: el colaborador -->
+  <circle cx="50.5" cy="45.5" r="13" fill="currentColor"></circle>
+
+  <!-- "V" inferior: estructura y base operativa -->
+  <path
+    d="M0 31 0 61 44.6 101.6Q50.5 107 56.4 101.6L100 61 100 31 97.8 31 53.8 76.4Q50.3 80 46.8 76.4L2 31Z"
+    fill="currentColor"></path>
+</svg>

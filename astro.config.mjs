@@ -18,20 +18,21 @@ export default defineConfig({
   },
 
   // Fonts API de Astro (self-hosted, con preload).
+  // Manual de identidad VIBA TECH: Space Grotesk (titulares) + Inter (lectura).
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Fraunces',
-      cssVariable: '--font-fraunces',
-      weights: [400, 500, 600, 700, 900],
-      styles: ['normal', 'italic'],
+      name: 'Space Grotesk',
+      cssVariable: '--font-space-grotesk',
+      weights: [500, 600, 700],
+      styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['Georgia', 'serif'],
+      fallbacks: ['system-ui', 'sans-serif'],
     },
     {
       provider: fontProviders.google(),
-      name: 'Figtree',
-      cssVariable: '--font-figtree',
+      name: 'Inter',
+      cssVariable: '--font-inter',
       weights: [400, 500, 600, 700],
       styles: ['normal'],
       subsets: ['latin'],

@@ -1,8 +1,8 @@
-# robots.txt — VIBA Consultores (sysifdev.com)
+# robots.txt — VIBA TECH (sysifdev.com)
 
 # Buscadores y crawlers de IA: acceso completo.
 # Queremos que Google, Gemini (Google-Extended), ChatGPT (GPTBot),
-# Perplexity y otros conozcan el rubro real de VIBA (consultoría estratégica).
+# Perplexity y otros conozcan el rubro real de VIBA TECH (plataforma SaaS B2B / EdTech).
 User-agent: *
 Allow: /
 
